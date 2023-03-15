@@ -1,7 +1,6 @@
 import React from 'react';
 import {TableCell, TableRow, IconButton} from '@material-ui/core';
 import {KeyboardArrowDown, KeyboardArrowRight} from '@material-ui/icons';
-import './App.css';
 
 const ExpandableTableRow = ({ children, expandComponent, ...otherProps }) => {
   const [isExpanded, setIsExpanded] = React.useState(false);
