@@ -20,10 +20,14 @@ Build Instructions
 
 #npm install
 
-#npm run build - to get production build
+NOTE: For any version updates issue, please use:
+
+#npm install --force
 
 #npm start
 
-Then open http://localhost:3000/ 
-to see this app.
+The project should open at :3000 port: http://localhost:3000/ 
+
+
+
 
