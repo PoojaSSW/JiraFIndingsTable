@@ -24,5 +24,6 @@ Build Instructions
 
 #npm start
 
-Then open http://localhost:3000/ to see this app.
+Then open http://localhost:3000/ 
+to see this app.
 
