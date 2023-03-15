@@ -24,6 +24,10 @@ NOTE: For any version updates issue, please use:
 
 #npm install --force
 
+For production build, please run
+
+#npm run build
+
 #npm start
 
 The project should open at :3000 port: http://localhost:3000/ 
