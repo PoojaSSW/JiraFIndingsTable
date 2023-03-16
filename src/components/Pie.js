@@ -6,7 +6,7 @@ import PieChart, {
   Size,
 } from 'devextreme-react/pie-chart';
 
-const Pie = ({ chartData }) => {
+const Pie = ({ chartData, onClickPieChartData }) => {
   const createData = () => {
     let pieData = [{
       severity: "Low",
@@ -25,12 +25,14 @@ const Pie = ({ chartData }) => {
   }
 
    const onCountClickHandler = (e) => {
+    onClickPieChartData(e.target.argument?.toLowerCase(), e.target.isVisible());
     onToggleVisibility(e.target);
   }
 
   const onLegendClickHandler = (e) => {
     const arg = e.target;
     const item = e.component.getAllSeries()[0]?.getPointsByArg(arg)[0];
+    onClickPieChartData(arg.toLowerCase(), item.isVisible());
     onToggleVisibility(item);
   }
 
