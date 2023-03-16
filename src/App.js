@@ -7,6 +7,7 @@ import grpFindings from "./store/grouped_findings.json";
 import "./App.css";
 
 function App() {
+  const [grpFindingData, setGrpFindingData] = React.useState(grpFindings);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [page, setPage] = React.useState(0);
 
@@ -40,10 +41,17 @@ function App() {
         return "grey"
     }
   }
+  const onClickPieChartData = (key, isKeyVisible) => {
+    let clickedPieChartData = isKeyVisible ? grpFindingData?.filter(i=>i.severity !== key) : grpFindingData?.concat(grpFindings?.filter(i=>i.severity == key));
+    setGrpFindingData(clickedPieChartData);
+  }
   return (
     <div className="App">
        <Box>
           <Grid container>
+            <Grid item={true} xs={4}>
+              <PieChart chartData={grpFindingData} onClickPieChartData={onClickPieChartData.bind(this)}/>
+            </Grid>
              <Grid item={true} xs={12}>
                 <TableContainer className="grid-cls">
                     <Table stickyHeader aria-label="simple table">
@@ -58,7 +66,7 @@ function App() {
                         </TableRow>
                       </TableHead>
                       <TableBody>
-                        {grpFindings
+                        {grpFindingData
                           .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                           .map(row => (
                           <ExpandableTableRow key={row.id}
@@ -84,15 +92,12 @@ function App() {
                   <TablePagination
                     rowsPerPageOptions={[5, 10, 15, 20, 25, 50, 100]}
                     component="div"
-                    count={grpFindings.length}
+                    count={grpFindingData.length}
                     rowsPerPage={rowsPerPage}
                     page={page}
                     onPageChange={handleChangePage}
                     onRowsPerPageChange={handleChangeRowsPerPage}
                   />
-              </Grid>
-              <Grid item={true} xs={4}>
-                <PieChart chartData={grpFindings}/>
               </Grid>
           </Grid>
       </Box>
