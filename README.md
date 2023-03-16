@@ -1,4 +1,4 @@
-# JiraFIndingsTable
+# JiraFindingsTable
 
 This project demonstrates a collapsible table showing group and Raw findings from Jira system.
 
