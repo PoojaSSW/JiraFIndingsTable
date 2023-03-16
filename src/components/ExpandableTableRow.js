@@ -1,7 +1,6 @@
 import React from 'react';
-import {TableCell, TableRow, IconButton, Table, TableBody, TableHead, Grid,Box ,TableContainer} from '@material-ui/core';
+import {TableCell, TableRow, IconButton, Table, TableBody, TableHead, Grid,Box, TableContainer} from '@material-ui/core';
 import {KeyboardArrowDown, KeyboardArrowRight} from '@material-ui/icons';
-
 import rawFindings from "../store/raw_findings.json";
 import "../App.css"
 
@@ -29,7 +28,7 @@ const ExpandableTableRow = ({
             <TableCell align="center">
               <span style= {{background: getBackgroundColor(rawRow.status)}} className="status-cls">{rawRow.status.toUpperCase()}</span>
             </TableCell>
-            <TableCell align="left">{rawRow.ticket_created}</TableCell>
+            <TableCell align="left">{new Date(rawRow.ticket_created).toDateString()}</TableCell>
             <TableCell align="left">{new Date(rawRow.finding_created).toDateString()}</TableCell>
             <TableCell align="center" className={`severity-cell  ${getSeverityColor(rawRow?.severity) || ""}`}>{rawRow.severity?.toUpperCase()}</TableCell>
             <TableCell align="left">
