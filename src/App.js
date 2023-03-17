@@ -44,15 +44,20 @@ function App() {
   const onClickPieChartData = (key, isKeyVisible) => {
     let clickedPieChartData = isKeyVisible ? grpFindingData?.filter(i=>i.severity !== key) : grpFindingData?.concat(grpFindings?.filter(i=>i.severity == key));
     setGrpFindingData(clickedPieChartData);
+    setPage(0);
+    setRowsPerPage(10);
   }
   return (
     <div className="App">
+       <div className="main-header-cls">Dashboard</div>
        <Box>
           <Grid container>
             <Grid item={true} xs={4}>
               <PieChart chartData={grpFindingData} onClickPieChartData={onClickPieChartData.bind(this)}/>
             </Grid>
              <Grid item={true} xs={12}>
+                <div className="table-header-cls">Jira Findings Table</div>
+                <div className="table-sub-header-cls">Below is a tabular representation of data from a Jira system that depicts Group and raw findings pertaining to that Group!</div>
                 <TableContainer className="grid-cls">
                     <Table stickyHeader aria-label="simple table">
                       <TableHead>
@@ -63,6 +68,7 @@ function App() {
                             <TableCell align="left">Created Date</TableCell>
                             <TableCell align="left">Severity</TableCell>
                             <TableCell align="left">Owner</TableCell>
+                            <TableCell align="left">Security Analyst</TableCell>
                         </TableRow>
                       </TableHead>
                       <TableBody>
@@ -83,6 +89,7 @@ function App() {
                             <TableCell align="left">{new Date(row.grouped_finding_created).toDateString()}</TableCell>
                             <TableCell align="left" className={`severity-cell  ${getSeverityColor(row?.severity)}` }>{row.severity?.toUpperCase()}</TableCell>
                             <TableCell align="left">{row.owner}</TableCell>
+                            <TableCell align="left">{row.security_analyst}</TableCell>
                           </ExpandableTableRow>
                           ))
                         }
