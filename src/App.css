@@ -23,6 +23,20 @@
   text-align: left;
 }
 
+.empty-wrapper{
+  width: 500px;
+  position: relative;
+  left: 100%;
+}
+
+.empty-msg-cls{
+  font-size:  25px;
+}
+
+.sub-empty-msg-cls{
+  font-size:  15px;
+}
+
 .raw-grid {
   border: 1px solid #b5a9a947;
   border-radius: 8px;
@@ -33,6 +47,7 @@
 .grid-cls, {
   max-height: 50em;
 }
+
 .severity-cell{
   text-align: center;
 }

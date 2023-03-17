@@ -5,7 +5,7 @@ import ExpandableTableRow from "./components/ExpandableTableRow";
 import PieChart from "./components/Pie";
 import grpFindings from "./store/grouped_findings.json";
 import "./App.css";
-
+import {isEmpty} from "lodash";
 function App() {
   const [grpFindingData, setGrpFindingData] = React.useState(grpFindings);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -57,7 +57,7 @@ function App() {
             </Grid>
              <Grid item={true} xs={12}>
                 <div className="table-header-cls">Jira Findings Table</div>
-                <div className="table-sub-header-cls">Below is a tabular representation of data from a Jira system that depicts Group and raw findings pertaining to that Group!</div>
+                <div className="table-sub-header-cls">Below is a tabular representation of security issues from Jira that depict their groups and raw findings for each group!</div>
                 <TableContainer className="grid-cls">
                     <Table stickyHeader aria-label="simple table">
                       <TableHead>
@@ -72,7 +72,12 @@ function App() {
                         </TableRow>
                       </TableHead>
                       <TableBody>
-                        {grpFindingData
+                        {isEmpty(grpFindingData) ? 
+                          <div className="empty-wrapper">
+                            <div className="empty-msg-cls">No Data Found</div>
+                            <div className="sub-empty-msg-cls">Please select atleast one severity from the pie chart above!</div>
+                          </div>
+                          :grpFindingData
                           .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                           .map(row => (
                           <ExpandableTableRow key={row.id}
