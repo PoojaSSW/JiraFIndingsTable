@@ -4,8 +4,11 @@ import PieChart, {
   Label,
   Connector,
   Size,
+  Title,
+  Subtitle,
+  Tooltip
 } from 'devextreme-react/pie-chart';
-
+import "../App.css";
 const Pie = ({ chartData, onClickPieChartData }) => {
   const createData = () => {
     let pieData = [{
@@ -45,14 +48,16 @@ const Pie = ({ chartData, onClickPieChartData }) => {
         id="pie"
         dataSource={createData()}
         palette="Bright"
-        title="Group Findings by Severity"
         onPointClick={onCountClickHandler}
         onLegendClick={onLegendClickHandler}
       >
+        <Title text="Group Findings by Severity">
+          <Subtitle text="Select a section or a legend to filter data based on Severity from the table below!"/>
+        </Title>
+        <Tooltip enabled={true}/>
         <Series
           argumentField="severity"
-          valueField="count"
-        >
+          valueField="count">
           <Label visible={true}>
             <Connector visible={true} width={1} />
           </Label>

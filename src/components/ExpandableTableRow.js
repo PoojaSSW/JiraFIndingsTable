@@ -1,5 +1,5 @@
 import React from 'react';
-import {TableCell, TableRow, IconButton, Table, TableBody, TableHead, Grid,Box, TableContainer} from '@material-ui/core';
+import {TableCell, TableRow, IconButton, Table, TableBody, TableHead, Grid,Box, TableContainer, TablePagination} from '@material-ui/core';
 import {KeyboardArrowDown, KeyboardArrowRight} from '@material-ui/icons';
 import rawFindings from "../store/raw_findings.json";
 import "../App.css"
@@ -13,7 +13,17 @@ const ExpandableTableRow = ({
   ...otherProps }) => {
   const [isExpanded, setIsExpanded] = React.useState(false);
   const [clickedRowId, setClickedRowId] = React.useState(null);
+  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [page, setPage] = React.useState(0);
 
+  const handleChangePage = (event, newPage) => {
+  setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = event => {
+    setRowsPerPage(+event.target.value);
+    setPage(0);
+  };
   const onClickRow = (id) => {
     setClickedRowId(id);
     setIsExpanded(!isExpanded);
@@ -22,6 +32,7 @@ const ExpandableTableRow = ({
    const getRawFindings = (grpRowId) => {
     return (rawFindings
       .filter(i=> grpRowId === i.grouped_finding_id)
+      .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
       .map(rawRow => (
         <TableRow key={rawRow.id}>
             <TableCell width="30%">{rawRow.description}</TableCell>
@@ -64,6 +75,15 @@ const ExpandableTableRow = ({
               </TableBody>
             </Table>
           </TableContainer>
+          <TablePagination
+            rowsPerPageOptions={[5, 10, 15, 20, 25, 50, 100]}
+            component="div"
+            count={rawFindings.filter(i=> rowID === i.grouped_finding_id).length}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            onPageChange={handleChangePage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+          />
         </Grid>
       </Box>);
   }
