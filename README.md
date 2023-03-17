@@ -11,6 +11,9 @@ An interactive Pie chart is a representation of data from Group Findings table b
 ## Interactivity
 Click on any pie section or a legend to filter the results based on SEVERITY and see the output in the table below the pie chart.
 
+### TODO:
+ **The ineractivity currently works for the group finding table. To be applied with similar concept for Raw findings table**
+
 ## How the Pie chart works:
 
 By default, all value are selected in the pie. When user clicks on the chart, that section value gets deselected from the legend next to the chart and the value disappers form the pie chart.
@@ -49,7 +52,6 @@ NOTE: For production build, please run
 #npm start
 
 The project should open at :3000 port: http://localhost:3000/ 
-
 
 
 
