@@ -42,7 +42,7 @@ function App() {
     }
   }
   const onClickPieChartData = (key, isKeyVisible) => {
-    let clickedPieChartData = isKeyVisible ? grpFindingData?.filter(i=>i.severity !== key) : grpFindingData?.concat(grpFindings?.filter(i=>i.severity == key));
+    let clickedPieChartData = isKeyVisible ? grpFindingData?.filter(i=>i.severity !== key) : grpFindingData?.concat(grpFindings?.filter(i=>i.severity === key));
     setGrpFindingData(clickedPieChartData);
     setPage(0);
     setRowsPerPage(10);
@@ -75,7 +75,7 @@ function App() {
                         {isEmpty(grpFindingData) ? 
                           <div className="empty-wrapper">
                             <div className="empty-msg-cls">No Data Found</div>
-                            <div className="sub-empty-msg-cls">Please select atleast one severity from the pie chart above!</div>
+                            <div className="sub-empty-msg-cls">Please select atleast one severity from the legend next to the pie chart above!</div>
                           </div>
                           :grpFindingData
                           .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
